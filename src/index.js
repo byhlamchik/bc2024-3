@@ -23,3 +23,16 @@ if (!options.input) {
 let inputFilePath = options.input;
 let outputFilePath = options.output;
 
+let resultData = "";
+try {
+    console.log(path.resolve(inputFilePath))
+    let rawData = JSON.parse(fs.readFileSync(inputFilePath).toString());
+    rawData.forEach(x => resultData += `${x["StockCode"]}-${x["ValCode"]}-${x["Attraction"]}\n`);
+    console.log(resultData)
+} catch (error) {
+    console.error(error);
+    process.exit(1)
+}
+
+console.log(resultData);
+if (options.output) fs.writeFileSync(outputFilePath, resultData.toString());
