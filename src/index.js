@@ -34,5 +34,5 @@ try {
     process.exit(1)
 }
 
-console.log(resultData);
+if (options.display) console.log(resultData);
 if (options.output) fs.writeFileSync(outputFilePath, resultData.toString());
